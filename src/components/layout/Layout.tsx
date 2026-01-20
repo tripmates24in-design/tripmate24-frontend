@@ -18,4 +18,3 @@ const Layout = ({ children, showFooter = true }: LayoutProps) => {
 };
 
 export default Layout;
-
