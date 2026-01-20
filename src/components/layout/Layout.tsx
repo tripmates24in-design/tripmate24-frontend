@@ -7,7 +7,7 @@ interface LayoutProps {
   showFooter?: boolean;
 }
 
-const Layout = ({ children, showFooter = true }: LayoutProps) => {
+function Layout({ children, showFooter = true }: LayoutProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -15,6 +15,7 @@ const Layout = ({ children, showFooter = true }: LayoutProps) => {
       {showFooter && <Footer />}
     </div>
   );
-};
+}
 
 export default Layout;
+
