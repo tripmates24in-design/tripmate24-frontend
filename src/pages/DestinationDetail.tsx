@@ -59,7 +59,7 @@ const DestinationDetail: React.FC = () => {
                     <h1 className="text-4xl md:text-5xl font-bold mb-2">{destination.title}</h1>
                     <div className="flex items-center gap-4 text-lg">
                         <div className="flex items-center gap-1">
-                            <MapPin className="h-5 w-5 text-blue-400" />
+                            <MapPin className="h-5 w-5 text-primary" />
                             {destination.location}, {destination.country}
                         </div>
                         <div className="flex items-center gap-1">
@@ -79,12 +79,12 @@ const DestinationDetail: React.FC = () => {
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab as any)}
-                                className={`pb-4 text-lg font-medium capitalize transition-colors relative ${activeTab === tab ? 'text-blue-600' : 'text-gray-500 hover:text-gray-800'
+                                className={`pb-4 text-lg font-medium capitalize transition-colors relative ${activeTab === tab ? 'text-primary' : 'text-gray-500 hover:text-gray-800'
                                     }`}
                             >
                                 {tab}
                                 {activeTab === tab && (
-                                    <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600" />
+                                    <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary" />
                                 )}
                             </button>
                         ))}
@@ -99,8 +99,8 @@ const DestinationDetail: React.FC = () => {
                                 <h3 className="text-xl font-bold mb-4">Highlights</h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                                     {destination.highlights.map((highlight, idx) => (
-                                        <div key={idx} className="flex items-center gap-3 bg-blue-50 p-4 rounded-xl text-blue-900">
-                                            <CheckCircle className="h-5 w-5 text-blue-600" />
+                                        <div key={idx} className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl text-primary">
+                                            <CheckCircle className="h-5 w-5 text-primary" />
                                             {highlight}
                                         </div>
                                     ))}
@@ -125,7 +125,7 @@ const DestinationDetail: React.FC = () => {
                                     {[1, 2, 3].map((day) => (
                                         <div key={day} className="flex gap-4">
                                             <div className="flex flex-col items-center">
-                                                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold">
+                                                <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">
                                                     {day}
                                                 </div>
                                                 <div className="w-0.5 h-full bg-gray-200 my-2" />
@@ -173,7 +173,7 @@ const DestinationDetail: React.FC = () => {
                         <div className="flex justify-between items-end mb-6">
                             <div>
                                 <span className="text-gray-500 text-sm">Price per person</span>
-                                <div className="text-3xl font-bold text-blue-600">${destination.price}</div>
+                                <div className="text-3xl font-bold text-primary">${destination.price}</div>
                             </div>
                             <div className="flex items-center gap-1 text-gray-500 text-sm">
                                 <Clock className="h-4 w-4" />
@@ -187,7 +187,7 @@ const DestinationDetail: React.FC = () => {
                                 <input
                                     type="date"
                                     required
-                                    className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                    className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                     value={bookingData.date}
                                     onChange={e => setBookingData({ ...bookingData, date: e.target.value })}
                                 />
@@ -200,7 +200,7 @@ const DestinationDetail: React.FC = () => {
                                         type="number"
                                         min="1"
                                         required
-                                        className="w-full border border-gray-300 rounded-lg p-3 pl-10 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                        className="w-full border border-gray-300 rounded-lg p-3 pl-10 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                         value={bookingData.guests}
                                         onChange={e => setBookingData({ ...bookingData, guests: parseInt(e.target.value) })}
                                     />
@@ -211,7 +211,7 @@ const DestinationDetail: React.FC = () => {
                                 <input
                                     type="text"
                                     required
-                                    className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                    className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                     value={bookingData.name}
                                     onChange={e => setBookingData({ ...bookingData, name: e.target.value })}
                                 />
@@ -221,7 +221,7 @@ const DestinationDetail: React.FC = () => {
                                 <input
                                     type="email"
                                     required
-                                    className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                    className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                     value={bookingData.email}
                                     onChange={e => setBookingData({ ...bookingData, email: e.target.value })}
                                 />
@@ -232,7 +232,7 @@ const DestinationDetail: React.FC = () => {
                                 <span>${destination.price * bookingData.guests}</span>
                             </div>
 
-                            <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-blue-600/30 transition-all">
+                            <button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-primary/30 transition-all">
                                 Book Now
                             </button>
                             <p className="text-center text-xs text-gray-400">You won't be charged yet</p>

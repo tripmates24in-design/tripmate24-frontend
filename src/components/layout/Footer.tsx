@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Twitter, Instagram, Mail, MapPin, Phone, Globe } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
@@ -10,16 +10,15 @@ const Footer: React.FC = () => {
                     {/* Brand */}
                     <div>
                         <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-white mb-4">
-                            <Globe className="h-8 w-8 text-blue-500" />
-                            <span>TravelSide</span>
+                            <img src="/src/assets/logo.png" alt="TravelSide Logo" className="h-10 w-auto" />
                         </Link>
                         <p className="text-gray-400 mb-6">
                             Discover the world's most breathtaking destinations with us. Your journey begins here.
                         </p>
                         <div className="flex gap-4">
-                            <a href="#" className="hover:text-blue-500 transition-colors"><Facebook className="h-5 w-5" /></a>
-                            <a href="#" className="hover:text-blue-400 transition-colors"><Twitter className="h-5 w-5" /></a>
-                            <a href="#" className="hover:text-pink-500 transition-colors"><Instagram className="h-5 w-5" /></a>
+                            <a href="#" className="hover:text-primary transition-colors"><Facebook className="h-5 w-5" /></a>
+                            <a href="#" className="hover:text-primary transition-colors"><Twitter className="h-5 w-5" /></a>
+                            <a href="#" className="hover:text-primary transition-colors"><Instagram className="h-5 w-5" /></a>
                         </div>
                     </div>
 
@@ -50,16 +49,16 @@ const Footer: React.FC = () => {
                         <h3 className="text-white font-semibold text-lg mb-4">Contact</h3>
                         <ul className="space-y-3">
                             <li className="flex items-center gap-3">
-                                <MapPin className="h-5 w-5 text-blue-500" />
+                                <MapPin className="h-5 w-5 text-primary" />
                                 <span>123 Travel Lane, New York, NY 10001</span>
                             </li>
                             <li className="flex items-center gap-3">
-                                <Phone className="h-5 w-5 text-blue-500" />
+                                <Phone className="h-5 w-5 text-primary" />
                                 <span>+1 (555) 123-4567</span>
                             </li>
                             <li className="flex items-center gap-3">
-                                <Mail className="h-5 w-5 text-blue-500" />
-                                <span>hello@travelside.com</span>
+                                <Mail className="h-5 w-5 text-primary" />
+                                <span>tripmates24.in@gmail.com</span>
                             </li>
                         </ul>
                     </div>

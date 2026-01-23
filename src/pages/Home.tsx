@@ -1,12 +1,12 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import { Search, MapPin, Calendar, Users, Star, ArrowRight } from 'lucide-react';
+import { Search, MapPin, Calendar, Users, Star, Bed, Utensils, Camera, Plane, Home as HomeIcon } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
-import { destinations, reviews } from '../data/mockData';
+import { destinations } from '../data/mockData';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -15,97 +15,71 @@ import 'swiper/css/pagination';
 
 const Home: React.FC = () => {
     const navigate = useNavigate();
-    const [searchParams, setSearchParams] = useState({
-        destination: '',
-        date: '',
-        guests: 1
-    });
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
-        navigate(`/search?destination=${searchParams.destination}`);
+        navigate(`/search?destination=${searchQuery}`);
     };
+
+    const categories = [
+        { name: 'Hotels', icon: Bed },
+        { name: 'Things to Do', icon: Camera },
+        { name: 'Restaurants', icon: Utensils },
+        { name: 'Flights', icon: Plane },
+        { name: 'Vacation Rentals', icon: HomeIcon },
+    ];
 
     return (
         <Layout>
             {/* Hero Section */}
-            <section className="relative h-screen min-h-[600px] flex items-center justify-center text-white">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-700 to-indigo-900 z-0 overflow-hidden">
-                    {/* Animated background elements could go here */}
-                    <div className="absolute inset-0 bg-black/30" />
-                </div>
-
-                <div className="relative z-10 container mx-auto px-4 text-center">
+            <section className="relative pt-32 pb-20 px-4 md:px-0 bg-white">
+                <div className="container mx-auto max-w-5xl">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
+                        className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-900 mb-12"
                     >
-                        Explore the World's<br />
-                        <span className="text-blue-300">Hidden Gems</span>
+                        India's first AI-human hybrid travel consultant platform
                     </motion.h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto"
-                    >
-                        Discover breathtaking destinations and create unforgettable memories.
-                    </motion.p>
+                    {/* Category Tabs */}
+                    <div className="flex justify-center gap-4 md:gap-8 mb-8 overflow-x-auto pb-4">
+                        {categories.map((cat) => (
+                            <motion.button
+                                key={cat.name}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex flex-col items-center gap-2 min-w-[80px] group"
+                            >
+                                <div className="p-3 rounded-full border border-gray-200 group-hover:border-black transition-colors">
+                                    <cat.icon className="h-6 w-6 text-gray-700" />
+                                </div>
+                                <span className="text-sm font-medium text-gray-700 whitespace-nowrap">{cat.name}</span>
+                            </motion.button>
+                        ))}
+                    </div>
 
                     {/* Search Bar */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="bg-white p-4 rounded-2xl shadow-xl max-w-4xl mx-auto"
+                        transition={{ delay: 0.2 }}
+                        className="relative max-w-3xl mx-auto shadow-xl rounded-full"
                     >
-                        <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div className="flex items-center gap-3 bg-gray-50 px-4 py-3 rounded-xl border border-gray-100">
-                                <MapPin className="text-blue-500" />
-                                <div className="text-left flex-1">
-                                    <label className="block text-xs text-gray-500 font-medium">Destination</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Where to?"
-                                        className="w-full bg-transparent outline-none text-gray-900 font-medium placeholder-gray-400"
-                                        value={searchParams.destination}
-                                        onChange={(e) => setSearchParams({ ...searchParams, destination: e.target.value })}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-3 bg-gray-50 px-4 py-3 rounded-xl border border-gray-100">
-                                <Calendar className="text-blue-500" />
-                                <div className="text-left flex-1">
-                                    <label className="block text-xs text-gray-500 font-medium">Date</label>
-                                    <input
-                                        type="date"
-                                        className="w-full bg-transparent outline-none text-gray-900 font-medium"
-                                        value={searchParams.date}
-                                        onChange={(e) => setSearchParams({ ...searchParams, date: e.target.value })}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="flex items-center gap-3 bg-gray-50 px-4 py-3 rounded-xl border border-gray-100">
-                                <Users className="text-blue-500" />
-                                <div className="text-left flex-1">
-                                    <label className="block text-xs text-gray-500 font-medium">Travelers</label>
-                                    <input
-                                        type="number"
-                                        min="1"
-                                        className="w-full bg-transparent outline-none text-gray-900 font-medium"
-                                        value={searchParams.guests}
-                                        onChange={(e) => setSearchParams({ ...searchParams, guests: parseInt(e.target.value) })}
-                                    />
-                                </div>
-                            </div>
-
-                            <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-all shadow-lg hover:shadow-blue-600/30 flex items-center justify-center gap-2">
-                                <Search className="h-5 w-5" />
+                        <form onSubmit={handleSearch} className="flex items-center bg-white rounded-full border border-gray-300 hover:shadow-2xl transition-shadow p-2 pl-6">
+                            <Search className="h-6 w-6 text-gray-500 mr-4" />
+                            <input
+                                type="text"
+                                placeholder="Places to go, things to do, hotels..."
+                                className="flex-1 outline-none text-lg text-gray-900 placeholder-gray-500 bg-transparent h-12"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            <button
+                                type="submit"
+                                className="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full transition-all"
+                            >
                                 Search
                             </button>
                         </form>
@@ -113,64 +87,44 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Featured Destinations */}
-            <section className="py-20 bg-gray-50">
+            {/* Featured Section */}
+            <section className="py-12 bg-white">
                 <div className="container mx-auto px-4">
-                    <div className="flex justify-between items-end mb-12">
-                        <div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Trending Destinations</h2>
-                            <p className="text-gray-600">Most popular places recommended by our travelers</p>
-                        </div>
-                        <Link to="/search" className="hidden md:flex items-center gap-2 text-blue-600 font-semibold hover:gap-3 transition-all">
-                            View All <ArrowRight className="h-5 w-5" />
-                        </Link>
+                    <div className="mb-8">
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">2024's Award Winning Destinations</h2>
+                        <p className="text-gray-600 mt-2">Travelers' Choice Best of the Best</p>
                     </div>
 
                     <Swiper
                         modules={[Navigation, Pagination, Autoplay]}
-                        spaceBetween={30}
+                        spaceBetween={24}
                         slidesPerView={1}
                         navigation
-                        pagination={{ clickable: true }}
-                        autoplay={{ delay: 5000 }}
                         breakpoints={{
                             640: { slidesPerView: 2 },
-                            1024: { slidesPerView: 3 },
+                            1024: { slidesPerView: 4 },
                         }}
-                        className="pb-12"
+                        className="pb-12 !pl-1" // minimal padding for shadow clipping
                     >
                         {destinations.map((dest) => (
                             <SwiperSlide key={dest.id}>
-                                <div className="bg-white rounded-2xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300 h-full">
-                                    <div className="relative h-64 overflow-hidden">
+                                <div className="group cursor-pointer">
+                                    <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-3">
                                         <img
                                             src={dest.image}
                                             alt={dest.title}
                                             className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                                         />
-                                        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-bold text-gray-900 flex items-center gap-1">
-                                            <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-xs font-bold text-gray-900 flex items-center gap-1">
+                                            <Star className="h-3 w-3 text-accent fill-accent" /> {/* Gold Accent */}
                                             {dest.rating}
                                         </div>
+                                        <div className="absolute bottom-3 left-3">
+                                            <h3 className="text-white font-bold text-xl text-shadow-lg">{dest.title}</h3>
+                                        </div>
                                     </div>
-                                    <div className="p-6">
-                                        <div className="flex justify-between items-start mb-2">
-                                            <h3 className="text-xl font-bold text-gray-900 line-clamp-1">{dest.title}</h3>
-                                            <span className="text-blue-600 font-bold">${dest.price}</span>
-                                        </div>
-                                        <div className="flex items-center gap-2 text-gray-500 mb-4">
-                                            <MapPin className="h-4 w-4" />
-                                            <span className="text-sm">{dest.location}</span>
-                                        </div>
-                                        <p className="text-gray-600 text-sm line-clamp-2 mb-6">
-                                            {dest.description}
-                                        </p>
-                                        <Link
-                                            to={`/destination/${dest.id}`}
-                                            className="block w-full bg-gray-100 hover:bg-blue-600 hover:text-white text-gray-900 font-semibold text-center py-3 rounded-xl transition-colors"
-                                        >
-                                            Explore
-                                        </Link>
+                                    <div>
+                                        <p className="text-sm text-gray-500 line-clamp-2">{dest.description}</p>
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -179,52 +133,57 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-            {/* Stats Section */}
-            <section className="py-20 bg-blue-900 text-white">
+            {/* "Ways to tour" Section - replacing Stats */}
+            <section className="py-16 bg-gray-50">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        <div>
-                            <div className="text-4xl font-bold mb-2">10k+</div>
-                            <div className="text-blue-200">Happy Travelers</div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">Ways to tour {destinations[0]?.location || 'Europe'}</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                                <MapPin className="h-6 w-6 text-primary" />
+                            </div>
+                            <h3 className="font-bold text-lg mb-2">Private Tours</h3>
+                            <p className="text-gray-600 text-sm">Explore at your own pace with a dedicated guide.</p>
                         </div>
-                        <div>
-                            <div className="text-4xl font-bold mb-2">500+</div>
-                            <div className="text-blue-200">Destinations</div>
+                        <div className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                                <Users className="h-6 w-6 text-primary" />
+                            </div>
+                            <h3 className="font-bold text-lg mb-2">Group Adventures</h3>
+                            <p className="text-gray-600 text-sm">Join like-minded travelers on curated experiences.</p>
                         </div>
-                        <div>
-                            <div className="text-4xl font-bold mb-2">24/7</div>
-                            <div className="text-blue-200">Support</div>
-                        </div>
-                        <div>
-                            <div className="text-4xl font-bold mb-2">4.9</div>
-                            <div className="text-blue-200">Average Rating</div>
+                        <div className="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer">
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                                <Calendar className="h-6 w-6 text-primary" />
+                            </div>
+                            <h3 className="font-bold text-lg mb-2">Day Trips</h3>
+                            <p className="text-gray-600 text-sm">Perfect excursions to complement your stay.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Testimonials */}
-            <section className="py-20">
+            {/* More to explore - Horizontal Scroll */}
+            <section className="py-16">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">What Travelers Say</h2>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {reviews.concat(reviews).slice(0, 3).map((review) => (
-                            <div key={review.id} className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                                <div className="flex gap-1 mb-4">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className={clsx("h-4 w-4", i < review.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300")} />
-                                    ))}
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">More to explore</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+                        {destinations.slice(0, 6).map((dest, idx) => (
+                            <Link to={`/destination/${dest.id}`} key={idx} className="group flex gap-4 items-center hover:bg-gray-50 p-2 rounded-lg transition-colors">
+                                <div className="w-24 h-24 shrink-0 rounded-lg overflow-hidden">
+                                    <img src={dest.image} alt={dest.title} className="w-full h-full object-cover" />
                                 </div>
-                                <p className="text-gray-600 mb-6 italic">"{review.comment}"</p>
-                                <div className="flex items-center gap-4">
-                                    <img src={review.avatar} alt={review.author} className="w-12 h-12 rounded-full object-cover" />
-                                    <div>
-                                        <div className="font-bold text-gray-900">{review.author}</div>
-                                        <div className="text-sm text-gray-500">{review.date}</div>
+                                <div>
+                                    <h4 className="font-bold text-gray-900 group-hover:text-primary transition-colors">{dest.title}</h4>
+                                    <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+                                        {[...Array(5)].map((_, i) => (
+                                            <div key={i} className={`h-2 w-2 rounded-full ${i < Math.floor(dest.rating) ? 'bg-primary' : 'bg-gray-300'}`} />
+                                        ))}
+                                        <span className="ml-1">{dest.reviewsCount} reviews</span>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

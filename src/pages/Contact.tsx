@@ -27,28 +27,28 @@ const Contact: React.FC = () => {
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl overflow-hidden">
                         {/* Contact Info & Map placeholder */}
-                        <div className="bg-blue-600 p-12 text-white relative overflow-hidden">
+                        <div className="bg-primary p-12 text-white relative overflow-hidden">
                             <div className="relative z-10">
                                 <h2 className="text-3xl font-bold mb-8">Get in Touch</h2>
-                                <p className="text-blue-100 mb-12 leading-relaxed">
+                                <p className="text-white/90 mb-12 leading-relaxed">
                                     Fill out the form and our team will try to get back to you within 24 hours.
                                 </p>
 
                                 <div className="space-y-6">
                                     <div className="flex items-center gap-4 text-lg">
-                                        <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                                             <Phone className="h-5 w-5" />
                                         </div>
                                         <span>+1 (555) 123-4567</span>
                                     </div>
                                     <div className="flex items-center gap-4 text-lg">
-                                        <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                                             <Mail className="h-5 w-5" />
                                         </div>
-                                        <span>hello@travelside.com</span>
+                                        <span>tripmates24.in@gmail.com</span>
                                     </div>
                                     <div className="flex items-center gap-4 text-lg">
-                                        <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                        <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                                             <MapPin className="h-5 w-5" />
                                         </div>
                                         <span>123 Travel Lane, New York, NY</span>
@@ -57,8 +57,8 @@ const Contact: React.FC = () => {
                             </div>
 
                             {/* Decorative circles */}
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full opacity-20 transform translate-x-1/3 -translate-y-1/3" />
-                            <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full opacity-20 transform translate-x-1/2 translate-y-1/2" />
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full opacity-20 transform translate-x-1/3 -translate-y-1/3" />
+                            <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full opacity-20 transform translate-x-1/2 translate-y-1/2" />
                         </div>
 
                         {/* Form */}
@@ -69,7 +69,7 @@ const Contact: React.FC = () => {
                                     <input
                                         type="text"
                                         required
-                                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                         placeholder="John Doe"
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
                                     <input
                                         type="email"
                                         required
-                                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
                                         placeholder="john@example.com"
                                         value={formData.email}
                                         onChange={e => setFormData({ ...formData, email: e.target.value })}
@@ -90,7 +90,7 @@ const Contact: React.FC = () => {
                                     <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                                     <textarea
                                         required
-                                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all h-32 resize-none"
+                                        className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all h-32 resize-none"
                                         placeholder="Tell us what you need help with..."
                                         value={formData.message}
                                         onChange={e => setFormData({ ...formData, message: e.target.value })}

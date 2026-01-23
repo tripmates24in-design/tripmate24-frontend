@@ -50,7 +50,7 @@ const About: React.FC = () => {
                             { icon: Award, title: 'Best Prices', desc: 'We guarantee the best rates for our exclusive packages.' }
                         ].map((item, i) => (
                             <div key={i} className="bg-white p-6 rounded-xl shadow-md text-center">
-                                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <div className="w-12 h-12 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
                                     <item.icon className="h-6 w-6" />
                                 </div>
                                 <h3 className="font-bold text-lg mb-2">{item.title}</h3>

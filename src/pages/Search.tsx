@@ -60,7 +60,7 @@ const Search: React.FC = () => {
                             min="0"
                             max="5000"
                             step="100"
-                            className="w-full accent-blue-600"
+                            className="w-full accent-primary"
                             value={filters.priceRange[1]}
                             onChange={(e) => setFilters({ ...filters, priceRange: [0, parseInt(e.target.value)] })}
                         />
@@ -79,7 +79,7 @@ const Search: React.FC = () => {
                                         type="checkbox"
                                         checked={filters.categories.includes(cat)}
                                         onChange={() => toggleCategory(cat)}
-                                        className="rounded text-blue-600 focus:ring-blue-500"
+                                        className="rounded text-primary focus:ring-primary"
                                     />
                                     <span className="capitalize text-gray-700">{cat}</span>
                                 </label>
@@ -96,7 +96,7 @@ const Search: React.FC = () => {
                                     name="rating"
                                     checked={filters.minRating === star}
                                     onChange={() => setFilters({ ...filters, minRating: star })}
-                                    className="text-blue-600 focus:ring-blue-500"
+                                    className="text-primary focus:ring-primary"
                                 />
                                 <div className="flex text-yellow-500">
                                     {[...Array(star)].map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
@@ -109,7 +109,7 @@ const Search: React.FC = () => {
 
                 {/* Mobile Filters Toggle */}
                 <button
-                    className="lg:hidden fixed bottom-6 right-6 z-40 bg-blue-600 text-white p-4 rounded-full shadow-lg"
+                    className="lg:hidden fixed bottom-6 right-6 z-40 bg-primary text-white p-4 rounded-full shadow-lg"
                     onClick={() => setShowMobileFilters(true)}
                 >
                     <Filter className="h-6 w-6" />
@@ -137,7 +137,7 @@ const Search: React.FC = () => {
                                 <div className="p-5">
                                     <div className="flex justify-between items-start mb-2">
                                         <h3 className="font-bold text-lg text-gray-900 line-clamp-1">{dest.title}</h3>
-                                        <span className="text-blue-600 font-bold">${dest.price}</span>
+                                        <span className="text-primary font-bold">${dest.price}</span>
                                     </div>
                                     <div className="flex items-center gap-1 text-gray-500 text-sm mb-4">
                                         <MapPin className="h-3 w-3" />
@@ -152,7 +152,7 @@ const Search: React.FC = () => {
                                     </div>
                                     <Link
                                         to={`/destination/${dest.id}`}
-                                        className="block w-full text-center bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-2 rounded-xl transition-colors"
+                                        className="block w-full text-center bg-gray-50 text-primary hover:bg-primary hover:text-white font-semibold py-2 rounded-xl transition-colors"
                                     >
                                         View Details
                                     </Link>
@@ -200,7 +200,7 @@ const Search: React.FC = () => {
                                     min="0"
                                     max="5000"
                                     step="100"
-                                    className="w-full accent-blue-600"
+                                    className="w-full accent-primary"
                                     value={filters.priceRange[1]}
                                     onChange={(e) => setFilters({ ...filters, priceRange: [0, parseInt(e.target.value)] })}
                                 />
@@ -219,7 +219,7 @@ const Search: React.FC = () => {
                                                 type="checkbox"
                                                 checked={filters.categories.includes(cat)}
                                                 onChange={() => toggleCategory(cat)}
-                                                className="w-5 h-5 rounded text-blue-600 focus:ring-blue-500"
+                                                className="w-5 h-5 rounded text-primary focus:ring-primary"
                                             />
                                             <span className="capitalize text-gray-700 text-lg">{cat}</span>
                                         </label>
@@ -235,7 +235,7 @@ const Search: React.FC = () => {
                                             name="rating-mobile"
                                             checked={filters.minRating === star}
                                             onChange={() => setFilters({ ...filters, minRating: star })}
-                                            className="w-5 h-5 text-blue-600 focus:ring-blue-500"
+                                            className="w-5 h-5 text-primary focus:ring-primary"
                                         />
                                         <div className="flex text-yellow-500">
                                             {[...Array(star)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
@@ -246,7 +246,7 @@ const Search: React.FC = () => {
 
                             <button
                                 onClick={() => setShowMobileFilters(false)}
-                                className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold shadow-lg"
+                                className="w-full bg-primary text-white py-3 rounded-xl font-bold shadow-lg"
                             >
                                 Show Results
                             </button>
